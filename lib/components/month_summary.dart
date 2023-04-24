@@ -28,7 +28,7 @@ class MonthlySummary extends StatelessWidget {
         scrollable: true,
         size: 30,
         colorsets: const {
-          1: Color.fromARGB(20, 2, 179, 8),
+          1: Color.fromARGB(19, 2, 179, 173),
           2: Color.fromARGB(40, 2, 179, 8),
           3: Color.fromARGB(60, 2, 179, 8),
           4: Color.fromARGB(80, 2, 179, 8),
