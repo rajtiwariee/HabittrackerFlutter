@@ -4,6 +4,7 @@ import 'package:habittrackertute/components/month_summary.dart';
 import 'package:habittrackertute/components/my_fab.dart';
 import 'package:habittrackertute/components/my_alert_box.dart';
 import 'package:habittrackertute/data/habit_database.dart';
+import 'package:habittrackertute/screens/signin_screen.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,6 +18,15 @@ class _HomePageState extends State<HomePage> {
   HabitDatabase db = HabitDatabase();
   final _myBox = Hive.box("Habit_Database");
 
+  void _logout() async {
+    // clear the user's data
+    await db.clearData();
+    // navigate to the login page
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const SignInScreen()),
+    );
+  }
   @override
   void initState() {
     // if there is no current habit list, then it is the 1st time ever opening the app
@@ -121,6 +131,16 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
+      appBar: AppBar(
+        title: Text('My Habits'),
+        actions: [
+          // add the logout button to the app bar
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: _logout,
+          ),
+        ],
+      ),
       floatingActionButton: MyFloatingActionButton(onPressed: createNewHabit),
       body: ListView(
         children: [

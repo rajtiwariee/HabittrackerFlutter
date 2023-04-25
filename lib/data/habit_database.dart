@@ -102,4 +102,6 @@ class HabitDatabase {
       print(heatMapDataSet);
     }
   }
+
+  clearData() {}
 }
